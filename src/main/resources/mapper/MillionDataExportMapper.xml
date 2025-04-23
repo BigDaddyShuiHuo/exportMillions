@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hwz.learn.exportmillions.mapper.MillionDataExportMapper">
+
+    <resultMap id="BaseResultMap" type="cn.hwz.learn.exportmillions.entity.MillionDataExport">
+            <id property="id" column="id" />
+            <result property="name" column="name" />
+            <result property="age" column="age" />
+            <result property="data1" column="data1" />
+            <result property="data2" column="data2" />
+            <result property="data3" column="data3" />
+            <result property="data4" column="data4" />
+            <result property="data5" column="data5" />
+            <result property="data6" column="data6" />
+            <result property="data7" column="data7" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,age,data1,data2,data3,
+        data4,data5,data6,data7
+    </sql>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+            from million_data_export
+        where id = #{id}
+    </select>
+
+
+    <select id="selectCursor" resultType="cn.hwz.learn.exportmillions.entity.MillionDataExport" fetchSize="1000">
+        select <include refid="Base_Column_List"/>
+        from million_data_export
+        limit 1000
+    </select>
+</mapper>
